@@ -2,10 +2,14 @@
   "name": "proyecto2",
   "version": "1.0.0",
   "description": "Aprendiendo a estructurar mis proyectos node",
-  "main": "web.js",
+  "main": "src/web.js",
   "scripts": {
-    "start": "node web.js"
+    "start": "node src/web.js"
   },
   "author": "Pack&Pack",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.0.9"
+  }
 }
