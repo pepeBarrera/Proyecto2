@@ -1,0 +1,11 @@
+{
+  "name": "proyecto2",
+  "version": "1.0.0",
+  "description": "Aprendiendo a estructurar mis proyectos node",
+  "main": "web.js",
+  "scripts": {
+    "start": "node web.js"
+  },
+  "author": "Pack&Pack",
+  "license": "UNLICENSED"
+}
