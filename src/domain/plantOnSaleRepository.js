@@ -44,6 +44,6 @@ exports.deletePlant = function(idPlant){
 				else
 					resolve(plantRemoved)
 			}
-		}
+		})
 	})
 }

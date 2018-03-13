@@ -1,5 +1,5 @@
 // Dependencias internas
-const plantSalesEntity = require('plantSalesEntity')
+const salesEntity = require('./salesEntity')
 
 // Funcion para crea una nueva venta
 exports.create = function (idClient,plantName,salePrice) {		
@@ -7,7 +7,7 @@ exports.create = function (idClient,plantName,salePrice) {
 	// Regresa un promise
 	return new Promise((resolve, reject) => {
 		// Se crea una instancia de plantSales
-		let plantSales = new plantSalesEntity()
+		let plantSales = new salesEntity()
 		plantSales.idClient = idClient
 		plantSales.plantName = plantName
 		plantSales.salePrice = salePrice
@@ -22,3 +22,12 @@ exports.create = function (idClient,plantName,salePrice) {
 		})
 	})
 }
+
+exports.getAllSales = new Promise((resolve, reject) => {
+	salesEntity.find(function (err, allSales) {
+		if(err)
+			reject(err)
+		else
+			resolve(allSales)
+	})
+})

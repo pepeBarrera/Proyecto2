@@ -12,11 +12,20 @@ exports.getEveryPlant = function (req, res) {
 	//res.json({success: true, message: "Todo funciona bien"})
 }
 
-exports.setSale = function (req, res) {
-	salesApp.setSale(req.body.idClient,req.body.idPlant,req.body.plantName,req.body.salePrice).then((ready) => {
-		res.json({success: true, data: ready})
+exports.getAllSales = function (req, res) {
+	salesApp.getAllSales.then((sales) => {
+		res.json({success: true, data: sales})
 	}).catch((err) => {
 		res.status(400)
 		res.json({success: false, err: err})
+	})
+}
+
+exports.setSale = function (req, res) {
+	salesApp.setSale(req.body.idClient,req.body.idPlant).then((ready) => {
+		res.json({success: true, data: ready})
+	}).catch((err) => {
+		res.status(400)
+		res.json({success: false, err: "error"})
 	})
 }

@@ -39,16 +39,17 @@ exports.discountSale = function (idClient,price){
 			if(err)
 				reject(err)
 			if(!client)
-				reject({{message: "Client not found with id " + idClient})
+				reject({message: "Client not found with id " + idClient})
 
-			clientEntity.money = clientEntity.money - price;
+			client.money = client.money - price;
+			console.log(client.money + " " + price + " " + (client.money - price))
        		
-       		clientEntity.save(function(err, client){
+       		client.save(function(err, client){
 	            if(err) 
 	                reject(err)
 	            else 
 	            	resolve(client)
-        });
-		}
+        	})
+		})
 	})
 }

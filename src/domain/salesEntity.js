@@ -1,6 +1,6 @@
-const const mongoose = require('mongoose')
+const mongoose = require('mongoose')
 
-var plantSalesSchema = new mongoose.schema({
+var plantSalesSchema = new mongoose.Schema({
 	idClient: String,
 	plantName: String,
 	salePrice: Number
