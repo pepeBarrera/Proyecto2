@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 
 // Own libraries
 const config = require('./config.js')
+const salesRouter = require('./infrastructure/salesRouter')
 
 //Instanciate proyect
 const app = express()
@@ -14,6 +15,15 @@ mongoose.connect(config.url)
 //Welcome route
 app.get('/', function(req, res){
 	res.send('Bienvenido!!')
+})
+
+// API Routes
+app.use('/v1/', salesRouter())
+
+// 404 Error
+app.use(function(req, res){
+	res.status(404)
+	res.json({success: false, err: "Error 404 rout not found!!"})
 })
 
 //Start server listening

@@ -22,3 +22,13 @@ exports.create = function(name, price) {
 		})
 	})
 }
+
+exports.getAllPlants = new Promise((resolve, reject) => {
+
+	plantEntity.find(function(err, plants){
+		if(err)
+			reject(err)
+		else
+			resolve(plants)
+	})
+})
