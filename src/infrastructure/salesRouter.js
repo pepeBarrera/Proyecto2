@@ -9,5 +9,7 @@ module.exports = function () {
 	// Petición HTTP, método GET, ruta: http://localhost:3000/v1/plants
 	router.get('/plants', saleService.getEveryPlant)
 
+	router.post('/plants' saleService.setSale)
+
 	return router
 }

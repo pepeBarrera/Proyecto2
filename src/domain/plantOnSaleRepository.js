@@ -32,3 +32,18 @@ exports.getAllPlants = new Promise((resolve, reject) => {
 			resolve(plants)
 	})
 })
+
+exports.deletePlant = function(idPlant){
+	return new Promise((resolve, reject) => {
+		plantEntity.findByIdAndRemove(idPlant, function(err, plantRemoved) {
+			if(err)
+				reject(err)
+			else{
+				if(!plantRemoved)
+					reject({message: "couldn't delete plant because not found with id " + req.params.noteId})
+				else
+					resolve(plantRemoved)
+			}
+		}
+	})
+}
