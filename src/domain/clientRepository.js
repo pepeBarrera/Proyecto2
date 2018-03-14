@@ -1,5 +1,6 @@
 // Dependencias internas
 const clientEntity = require('./clientEntity')
+const plantEntity = require('./plantEntity')
 
 // Funcion para crea un nuevo cliente
 exports.create = function (name,mail,phone,money) {		
@@ -35,7 +36,7 @@ exports.getAllClients = function () {
 	})
 }
 
-exports.discountSale = function (idClient,price){
+exports.discountSale = function (idClient,idPlant){
 	return new Promise((resolve, reject) => {
 		clientEntity.findById(idClient, function(err, client) {
 			if(err)
@@ -43,17 +44,24 @@ exports.discountSale = function (idClient,price){
 			if(!client)
 				return reject({message: "Client not found with id " + idClient})
 
-			client.money = client.money - price;
+			plantEntity.findById(idPlant, function (err, plant) {
+				if(err)
+					reject(err)
+				else{
+					// Se obtiene precio de la planta y procese a descontar $$ al cliente
+					client.money = client.money - plant.price;
 
-			if(client.money < 0)
-				return reject({message: "Saldo insuficiente para realizar compra"})
-       		
-       		client.save(function(err, client){
-	            if(err) 
-	                reject(err)
-	            else 
-	            	resolve(client)
-        	})
+					if(client.money < 0)
+						return reject({message: "Saldo insuficiente para realizar compra"})
+		       		
+		       		client.save(function(err, client){
+			            if(err) 
+			                reject(err)
+			            else 
+			            	resolve(client)
+		        	})
+				}
+			})
 		})
 	})
 }

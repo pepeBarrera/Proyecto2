@@ -19,15 +19,15 @@ exports.getAllSales = function () {
 exports.setSale = function (idClient,idPlant) {
 	return new Promise((resolve, reject) => {
 
+		clientRepository.discountSale(idClient,idPlant).then((client) => {
+					
 			plantsOnSaleRepository.deletePlant(idPlant).then((plant) => {
 
-				clientRepository.discountSale(idClient,plant.price).then((client) => {
-					//resolve(client)
-					salesRepository.create(idClient,plant.name,plant.price).then(resolve).catch(reject)
-
-				}).catch(reject)
+				salesRepository.create(idClient,plant.name,plant.price).then(resolve).catch(reject)
 
 			}).catch(reject)
+
+		}).catch(reject)			
 
 	})
 }
