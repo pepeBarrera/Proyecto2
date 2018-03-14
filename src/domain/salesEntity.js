@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 var plantSalesSchema = new mongoose.Schema({
-	idClient: String,
+	idClient: mongoose.Schema.Types.ObjectId,
 	plantName: String,
 	salePrice: Number
 })

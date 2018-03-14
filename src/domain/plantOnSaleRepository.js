@@ -23,15 +23,19 @@ exports.create = function(name, price) {
 	})
 }
 
-exports.getAllPlants = new Promise((resolve, reject) => {
-
-	plantEntity.find(function(err, plants){
-		if(err)
-			reject(err)
-		else
-			resolve(plants)
+exports.getAllPlants = function () {
+	return new Promise((resolve, reject) => {
+		console.log("Esto se esta ejecutando")
+		plantEntity.find(function(err, plants){
+			if(err)
+				reject(err)
+			else{
+				//console.log(plants)
+				resolve(plants)
+			}
+		})
 	})
-})
+}
 
 exports.deletePlant = function(idPlant){
 	return new Promise((resolve, reject) => {
@@ -40,7 +44,7 @@ exports.deletePlant = function(idPlant){
 				reject(err)
 			else{
 				if(!plantRemoved)
-					reject({message: "couldn't delete plant because not found with id " + req.params.noteId})
+					reject({message: "couldn't delete plant because not found with id " + idPlant})
 				else
 					resolve(plantRemoved)
 			}

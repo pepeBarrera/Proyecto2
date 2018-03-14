@@ -24,25 +24,29 @@ exports.create = function (name,mail,phone,money) {
 	})
 }
 
-exports.getAllClients = new Promise((resolve, reject) => {
-	clientEntity.find(function(err, clients){
-		if(err)
-			reject(err)
-		else
-			resolve(clients)
+exports.getAllClients = function () {
+	return new Promise((resolve, reject) => {
+		clientEntity.find(function(err, clients){
+			if(err)
+				reject(err)
+			else
+				resolve(clients)
+		})
 	})
-})
+}
 
 exports.discountSale = function (idClient,price){
 	return new Promise((resolve, reject) => {
 		clientEntity.findById(idClient, function(err, client) {
 			if(err)
-				reject(err)
+				return reject(err)
 			if(!client)
-				reject({message: "Client not found with id " + idClient})
+				return reject({message: "Client not found with id " + idClient})
 
 			client.money = client.money - price;
-			console.log(client.money + " " + price + " " + (client.money - price))
+
+			if(client.money < 0)
+				return reject({message: "Saldo insuficiente para realizar compra"})
        		
        		client.save(function(err, client){
 	            if(err) 

@@ -7,9 +7,9 @@ module.exports = function () {
 	const router = new express.Router()
 
 	// Petición HTTP, método GET, ruta: http://localhost:3000/v1/client
-	router.get('/client', clientService.getEveryPlant)
+	router.get('/clients', clientService.getEveryPlant)
 
-	router.post('/client', clientService.createClient)
+	router.post('/clients', clientService.createClient)
 
 	return router
 }

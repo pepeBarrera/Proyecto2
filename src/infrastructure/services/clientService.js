@@ -2,7 +2,7 @@ const clientApp = require('../../application/clientApp')
 
 exports.getEveryPlant = function (req, res) {
 	
-	clientApp.getEveryClient.then((clients) => {
+	clientApp.getEveryClient().then((clients) => {
 		res.json({success: true, data: clients})
 	}).catch((err) => {
 		res.status(400)

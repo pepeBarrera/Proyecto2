@@ -2,7 +2,7 @@ const salesApp = require('../../application/salesApp')
 
 exports.getEveryPlant = function (req, res) {
 	
-	salesApp.getEveryPlant.then((plants) => {
+	salesApp.getEveryPlant().then((plants) => {
 		res.json({success: true, plants: plants})
 	}).catch((err) => {
 		res.status(400)
@@ -13,7 +13,7 @@ exports.getEveryPlant = function (req, res) {
 }
 
 exports.getAllSales = function (req, res) {
-	salesApp.getAllSales.then((sales) => {
+	salesApp.getAllSales().then((sales) => {
 		res.json({success: true, data: sales})
 	}).catch((err) => {
 		res.status(400)
@@ -26,6 +26,6 @@ exports.setSale = function (req, res) {
 		res.json({success: true, data: ready})
 	}).catch((err) => {
 		res.status(400)
-		res.json({success: false, err: "error"})
+		res.json({success: false, err: err})
 	})
 }

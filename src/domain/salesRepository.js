@@ -7,12 +7,13 @@ exports.create = function (idClient,plantName,salePrice) {
 	// Regresa un promise
 	return new Promise((resolve, reject) => {
 		// Se crea una instancia de plantSales
+		console.log(idClient + " " +plantName + " " + salePrice)
 		let plantSales = new salesEntity()
 		plantSales.idClient = idClient
 		plantSales.plantName = plantName
 		plantSales.salePrice = salePrice
 
-		plantSale.save(function(err, thePlantSales){
+		plantSales.save(function(err, thePlantSales){
 			// Maneja el error
 			if(err)
 				reject(err)
@@ -23,11 +24,13 @@ exports.create = function (idClient,plantName,salePrice) {
 	})
 }
 
-exports.getAllSales = new Promise((resolve, reject) => {
-	salesEntity.find(function (err, allSales) {
-		if(err)
-			reject(err)
-		else
-			resolve(allSales)
+exports.getAllSales = function () {
+	return new Promise((resolve, reject) => {
+		salesEntity.find(function (err, allSales) {
+			if(err)
+				reject(err)
+			else
+				resolve(allSales)
+		})
 	})
-})
+}
